@@ -4,7 +4,7 @@ set -euo pipefail
 trap 'echo "ERROR: script failed at line $LINENO" >&2' ERR
 
 SECRETS_FILE="$HOME/dev/.secrets.env"
-COOLIFY_URL="${COOLIFY_URL:-http://localhost:8080}"
+COOLIFY_URL="${COOLIFY_URL:-https://localhost:8443}"
 APP_DIR="$HOME/dev/server/r_u.live"
 GITHUB_REPO="anshulyadav-git/setupx-linux"
 APP_SUBDIRECTORY="server/r_u.live"
@@ -30,11 +30,12 @@ API="$COOLIFY_URL/api/v1"
 AUTH="Authorization: Bearer $COOLIFY_API_TOKEN"
 
 # ── Helper ────────────────────────────────────────────────────────────────────
-api_get()  { curl -fsSL -H "$AUTH" -H "Accept: application/json" "$API/$1"; }
-api_post() { curl -fsSL -X POST -H "$AUTH" -H "Content-Type: application/json" -d "$2" "$API/$1"; }
+api_get()  { curl -fsSLk -H "$AUTH" -H "Accept: application/json" "$API/$1"; }
+api_post() { curl -fsSLk -X POST -H "$AUTH" -H "Content-Type: application/json" -d "$2" "$API/$1"; }
 
 echo "==> [1/5] Verifying Coolify connection…"
-api_get "health" | grep -q "ok" || { echo "ERROR: Cannot reach Coolify API at $COOLIFY_URL"; exit 1; }
+api_get "health" | python3 -c "import sys,json; d=json.load(sys.stdin); assert 'message' in d or d" 2>/dev/null \
+  || { echo "ERROR: Cannot reach Coolify API at $COOLIFY_URL"; exit 1; }
 echo "    OK"
 
 # ── Get first server UUID ─────────────────────────────────────────────────────
