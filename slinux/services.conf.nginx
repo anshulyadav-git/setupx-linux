@@ -1,7 +1,7 @@
 # Redirect HTTP → HTTPS
 server {
     listen 80;
-    server_name r-u.live www.r-u.live supabase.r-u.live api.r-u.live dns.r-u.live powerdns.r-u.live mail.r-u.live portainer.r-u.live buddy.r-u.live;
+    server_name r-u.live www.r-u.live supabase.r-u.live api.r-u.live dns.r-u.live powerdns.r-u.live mail.r-u.live portainer.r-u.live buddy.r-u.live list.r-u.live;
     return 301 https://$host$request_uri;
 }
 
@@ -143,4 +143,15 @@ server {
         proxy_set_header X-Forwarded-Proto https;
         proxy_read_timeout 60;
     }
+}
+
+# Subdomain List (HTTPS)
+server {
+    listen 443 ssl;
+    server_name list.r-u.live;
+    ssl_certificate     /etc/letsencrypt/live/r-u.live/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/r-u.live/privkey.pem;
+    root /home/ay/dev/server/list;
+    index index.html;
+    location / { try_files $uri /index.html; }
 }

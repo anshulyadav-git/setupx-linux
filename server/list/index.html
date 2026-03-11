@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>r-u.live – All Services</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      background: #0f1117;
+      color: #e5e7eb;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 48px 24px;
+    }
+    .container { max-width: 760px; margin: 0 auto; }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+      margin-bottom: 4px;
+    }
+    .subtitle { color: #6b7280; font-size: 13px; margin-bottom: 32px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #1a1d27;
+      border: 1px solid #2a2d3e;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    thead tr { background: #12141f; }
+    th {
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #6b7280;
+      padding: 14px 20px;
+      border-bottom: 1px solid #2a2d3e;
+    }
+    th:first-child { width: 60px; text-align: center; }
+    th:last-child  { width: 120px; text-align: center; }
+
+    tbody tr {
+      border-bottom: 1px solid #1e2130;
+      transition: background 0.15s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #1e2233; }
+
+    td { padding: 14px 20px; font-size: 14px; vertical-align: middle; }
+    td:first-child { text-align: center; color: #4b5563; font-size: 12px; font-variant-numeric: tabular-nums; }
+    td:last-child  { text-align: center; }
+
+    .icon { font-size: 18px; margin-right: 10px; vertical-align: middle; }
+    .name { font-weight: 600; color: #e5e7eb; }
+    .desc { font-size: 12px; color: #6b7280; margin-top: 2px; }
+
+    .open-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: transparent;
+      border: 1px solid #2a2d3e;
+      color: #818cf8;
+      border-radius: 7px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .open-btn:hover {
+      background: rgba(99,102,241,0.12);
+      border-color: #6366f1;
+      color: #c7d2fe;
+    }
+
+    @media (max-width: 500px) {
+      .desc { display: none; }
+      td, th { padding: 12px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌐 r-u.live</h1>
+    <p class="subtitle">All active subdomains — click to open</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Subdomain</th>
+          <th>Service</th>
+          <th>Open</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><code>r-u.live</code></td>
+          <td>
+            <span class="icon">🌐</span>
+            <span class="name">Landing Page</span>
+            <div class="desc">Public website</div>
+          </td>
+          <td><a class="open-btn" href="https://r-u.live" target="_blank">Open →</a></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><code>buddy.r-u.live</code></td>
+          <td>
+            <span class="icon">🤖</span>
+            <span class="name">Buddy Dashboard</span>
+            <div class="desc">Single-login control panel for all services</div>
+          </td>
+          <td><a class="open-btn" href="https://buddy.r-u.live" target="_blank">Open →</a></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><code>coolify.r-u.live</code></td>
+          <td>
+            <span class="icon">⚡</span>
+            <span class="name">Coolify</span>
+            <div class="desc">Self-hosted PaaS – deploy &amp; manage apps</div>
+          </td>
+          <td><a class="open-btn" href="https://coolify.r-u.live" target="_blank">Open →</a></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><code>supabase.r-u.live</code></td>
+          <td>
+            <span class="icon">🗄️</span>
+            <span class="name">Supabase Studio</span>
+            <div class="desc">Database, auth, storage &amp; realtime</div>
+          </td>
+          <td><a class="open-btn" href="https://supabase.r-u.live" target="_blank">Open →</a></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><code>api.r-u.live</code></td>
+          <td>
+            <span class="icon">🔌</span>
+            <span class="name">Supabase API</span>
+            <div class="desc">Kong gateway – REST, auth &amp; realtime endpoints</div>
+          </td>
+          <td><a class="open-btn" href="https://api.r-u.live" target="_blank">Open →</a></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><code>portainer.r-u.live</code></td>
+          <td>
+            <span class="icon">🐳</span>
+            <span class="name">Portainer</span>
+            <div class="desc">Docker container management UI</div>
+          </td>
+          <td><a class="open-btn" href="https://portainer.r-u.live" target="_blank">Open →</a></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><code>dns.r-u.live</code></td>
+          <td>
+            <span class="icon">🔄</span>
+            <span class="name">DDNS Updater</span>
+            <div class="desc">Cloudflare auto-sync for all 17 A records</div>
+          </td>
+          <td><a class="open-btn" href="https://dns.r-u.live" target="_blank">Open →</a></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><code>powerdns.r-u.live</code></td>
+          <td>
+            <span class="icon">📡</span>
+            <span class="name">PowerDNS</span>
+            <div class="desc">Authoritative DNS server monitor</div>
+          </td>
+          <td><a class="open-btn" href="https://powerdns.r-u.live" target="_blank">Open →</a></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><code>mail.r-u.live</code></td>
+          <td>
+            <span class="icon">📧</span>
+            <span class="name">Webmail</span>
+            <div class="desc">SnappyMail – read &amp; send email</div>
+          </td>
+          <td><a class="open-btn" href="https://mail.r-u.live" target="_blank">Open →</a></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><code>list.r-u.live</code></td>
+          <td>
+            <span class="icon">📋</span>
+            <span class="name">This Page</span>
+            <div class="desc">Full subdomain directory</div>
+          </td>
+          <td><a class="open-btn" href="https://list.r-u.live" target="_blank">Open →</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
