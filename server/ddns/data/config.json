@@ -1,0 +1,174 @@
+{
+  "settings": [
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "772a2ecf07e0080da4cc69ac896490d9",
+      "domain": "r-u.live",
+      "host": "@",
+      "proxied": false,
+      "ttl": 600,
+      "token": "pJHsTqeo-v6vrxJ_wHNlx9dcLXK2ZQIQs3SFYQHL",
+      "ip_version": "ipv4"
+    },
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "772a2ecf07e0080da4cc69ac896490d9",
+      "domain": "r-u.live",
+      "host": "www",
+      "proxied": false,
+      "ttl": 600,
+      "token": "pJHsTqeo-v6vrxJ_wHNlx9dcLXK2ZQIQs3SFYQHL",
+      "ip_version": "ipv4"
+    },
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "772a2ecf07e0080da4cc69ac896490d9",
+      "domain": "r-u.live",
+      "host": "api",
+      "proxied": false,
+      "ttl": 600,
+      "token": "pJHsTqeo-v6vrxJ_wHNlx9dcLXK2ZQIQs3SFYQHL",
+      "ip_version": "ipv4"
+    },
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "772a2ecf07e0080da4cc69ac896490d9",
+      "domain": "r-u.live",
+      "host": "coolify",
+      "proxied": false,
+      "ttl": 600,
+      "token": "pJHsTqeo-v6vrxJ_wHNlx9dcLXK2ZQIQs3SFYQHL",
+      "ip_version": "ipv4"
+    },
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "772a2ecf07e0080da4cc69ac896490d9",
+      "domain": "r-u.live",
+      "host": "mail",
+      "proxied": false,
+      "ttl": 600,
+      "token": "pJHsTqeo-v6vrxJ_wHNlx9dcLXK2ZQIQs3SFYQHL",
+      "ip_version": "ipv4"
+    },
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "772a2ecf07e0080da4cc69ac896490d9",
+      "domain": "r-u.live",
+      "host": "supabase",
+      "proxied": false,
+      "ttl": 600,
+      "token": "pJHsTqeo-v6vrxJ_wHNlx9dcLXK2ZQIQs3SFYQHL",
+      "ip_version": "ipv4"
+    },
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "772a2ecf07e0080da4cc69ac896490d9",
+      "domain": "r-u.live",
+      "host": "webserver",
+      "proxied": false,
+      "ttl": 600,
+      "token": "pJHsTqeo-v6vrxJ_wHNlx9dcLXK2ZQIQs3SFYQHL",
+      "ip_version": "ipv4"
+    },
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "772a2ecf07e0080da4cc69ac896490d9",
+      "domain": "r-u.live",
+      "host": "powerdns",
+      "proxied": false,
+      "ttl": 600,
+      "token": "pJHsTqeo-v6vrxJ_wHNlx9dcLXK2ZQIQs3SFYQHL",
+      "ip_version": "ipv4"
+    },
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "772a2ecf07e0080da4cc69ac896490d9",
+      "domain": "r-u.live",
+      "host": "psql",
+      "proxied": false,
+      "ttl": 600,
+      "token": "pJHsTqeo-v6vrxJ_wHNlx9dcLXK2ZQIQs3SFYQHL",
+      "ip_version": "ipv4"
+    },
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "772a2ecf07e0080da4cc69ac896490d9",
+      "domain": "r-u.live",
+      "host": "openclaw",
+      "proxied": false,
+      "ttl": 600,
+      "token": "pJHsTqeo-v6vrxJ_wHNlx9dcLXK2ZQIQs3SFYQHL",
+      "ip_version": "ipv4"
+    },
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "772a2ecf07e0080da4cc69ac896490d9",
+      "domain": "r-u.live",
+      "host": "ns1",
+      "proxied": false,
+      "ttl": 600,
+      "token": "pJHsTqeo-v6vrxJ_wHNlx9dcLXK2ZQIQs3SFYQHL",
+      "ip_version": "ipv4"
+    },
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "772a2ecf07e0080da4cc69ac896490d9",
+      "domain": "r-u.live",
+      "host": "ns2",
+      "proxied": false,
+      "ttl": 600,
+      "token": "pJHsTqeo-v6vrxJ_wHNlx9dcLXK2ZQIQs3SFYQHL",
+      "ip_version": "ipv4"
+    },
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "772a2ecf07e0080da4cc69ac896490d9",
+      "domain": "r-u.live",
+      "host": "postal",
+      "proxied": false,
+      "ttl": 600,
+      "token": "pJHsTqeo-v6vrxJ_wHNlx9dcLXK2ZQIQs3SFYQHL",
+      "ip_version": "ipv4"
+    },
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "772a2ecf07e0080da4cc69ac896490d9",
+      "domain": "r-u.live",
+      "host": "routes.postal",
+      "proxied": false,
+      "ttl": 600,
+      "token": "pJHsTqeo-v6vrxJ_wHNlx9dcLXK2ZQIQs3SFYQHL",
+      "ip_version": "ipv4"
+    },
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "772a2ecf07e0080da4cc69ac896490d9",
+      "domain": "r-u.live",
+      "host": "track.postal",
+      "proxied": false,
+      "ttl": 600,
+      "token": "pJHsTqeo-v6vrxJ_wHNlx9dcLXK2ZQIQs3SFYQHL",
+      "ip_version": "ipv4"
+    },
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "772a2ecf07e0080da4cc69ac896490d9",
+      "domain": "r-u.live",
+      "host": "mx.postal",
+      "proxied": false,
+      "ttl": 600,
+      "token": "pJHsTqeo-v6vrxJ_wHNlx9dcLXK2ZQIQs3SFYQHL",
+      "ip_version": "ipv4"
+    },
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "772a2ecf07e0080da4cc69ac896490d9",
+      "domain": "r-u.live",
+      "host": "dns",
+      "proxied": false,
+      "ttl": 600,
+      "token": "pJHsTqeo-v6vrxJ_wHNlx9dcLXK2ZQIQs3SFYQHL",
+      "ip_version": "ipv4"
+    }
+  ]
+}
