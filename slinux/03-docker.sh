@@ -1,8 +1,10 @@
 #!/bin/bash
+# [03] docker
 
-# Script to install Docker on Ubuntu/Debian
+set -euo pipefail
+trap 'echo "[ERROR] Script failed at line $LINENO. Exit code: $?" >&2' ERR
 
-set -e
+echo "[03/10] docker"
 
 echo "Updating system..."
 sudo apt update

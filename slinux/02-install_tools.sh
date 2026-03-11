@@ -1,8 +1,10 @@
 #!/bin/bash
+# [02] install_tools
 
-# Script to update system and install Node.js LTS, Git, GitHub CLI, and Python latest
+set -euo pipefail
+trap 'echo "[ERROR] Script failed at line $LINENO. Exit code: $?" >&2' ERR
 
-set -e
+echo "[02/10] install_tools"
 
 echo "Updating system..."
 sudo apt update && sudo apt upgrade -y

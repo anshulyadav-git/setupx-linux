@@ -1,0 +1,8 @@
+# Secrets & credentials — never commit these
+.env
+*.env
+**/.env
+**/*.env
+.cloudflared/.env
+.secrets.env
+setup-*.log
