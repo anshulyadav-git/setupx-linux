@@ -1,0 +1,19 @@
+services:
+  powerdns:
+    build: .
+    container_name: powerdns
+    restart: unless-stopped
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "8081:8081/tcp"
+    environment:
+      CF_TOKEN: ${CLOUDFLARE_API_TOKEN}
+      CF_ZONE: ${CF_ZONE_ID:-772a2ecf07e0080da4cc69ac896490d9}
+      CF_DOMAIN: ${CF_DOMAIN:-r-u.live}
+    networks:
+      - powerdns
+
+networks:
+  powerdns:
+    name: powerdns
