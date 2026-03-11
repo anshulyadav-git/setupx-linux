@@ -1,0 +1,11 @@
+services:
+  buddy:
+    build: .
+    container_name: buddy
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8091:3000"
+    environment:
+      - ADMIN_USER=admin
+      - ADMIN_PASS=Admin1234
+      - SESSION_SECRET=buddy-r-u-live-secret-xZ9k

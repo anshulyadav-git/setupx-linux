@@ -1,7 +1,7 @@
 # Redirect HTTP → HTTPS
 server {
     listen 80;
-    server_name r-u.live www.r-u.live supabase.r-u.live api.r-u.live dns.r-u.live powerdns.r-u.live mail.r-u.live portainer.r-u.live;
+    server_name r-u.live www.r-u.live supabase.r-u.live api.r-u.live dns.r-u.live powerdns.r-u.live mail.r-u.live portainer.r-u.live buddy.r-u.live;
     return 301 https://$host$request_uri;
 }
 
@@ -125,5 +125,22 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-Proto https;
         proxy_read_timeout 300;
+    }
+}
+
+# Buddy Dashboard (HTTPS)
+server {
+    listen 443 ssl;
+    server_name buddy.r-u.live;
+    ssl_certificate     /etc/letsencrypt/live/r-u.live/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/r-u.live/privkey.pem;
+
+    location / {
+        proxy_pass http://127.0.0.1:8091;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_read_timeout 60;
     }
 }

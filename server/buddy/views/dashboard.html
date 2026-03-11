@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buddy – Dashboard</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f1117;
+      --card: #1a1d27;
+      --border: #2a2d3e;
+      --text: #e5e7eb;
+      --muted: #6b7280;
+      --accent: #6366f1;
+    }
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    /* ── Header ── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 32px;
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-icon { font-size: 28px; }
+    .brand h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+    .brand p { font-size: 12px; color: var(--muted); margin-top: 1px; }
+    .header-right { display: flex; align-items: center; gap: 16px; }
+    .status-all { font-size: 12px; color: #4ade80; display: flex; align-items: center; gap: 6px; }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+    .logout-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 8px;
+      padding: 7px 14px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .logout-btn:hover { border-color: #ef4444; color: #ef4444; }
+
+    /* ── Main ── */
+    main { padding: 40px 32px; max-width: 1200px; margin: 0 auto; }
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    /* ── Service Card ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(99,102,241,0.12);
+    }
+    .card-top { display: flex; align-items: flex-start; justify-content: space-between; }
+    .card-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .badge-live { background: rgba(74,222,128,0.12); color: #4ade80; }
+    .badge-api { background: rgba(99,102,241,0.12); color: #818cf8; }
+    .badge-auth { background: rgba(250,204,21,0.12); color: #fbbf24; }
+    .card-body {}
+    .card-name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .card-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .card-url { font-size: 11px; color: var(--muted); font-family: monospace; }
+    .open-arrow { color: var(--accent); font-size: 16px; transition: transform 0.15s; }
+    .card:hover .open-arrow { transform: translateX(3px); }
+
+    /* Card accent colors */
+    .c-indigo .card-icon { background: rgba(99,102,241,0.15); }
+    .c-purple .card-icon { background: rgba(168,85,247,0.15); }
+    .c-green  .card-icon { background: rgba(34,197,94,0.15); }
+    .c-blue   .card-icon { background: rgba(59,130,246,0.15); }
+    .c-orange .card-icon { background: rgba(249,115,22,0.15); }
+    .c-red    .card-icon { background: rgba(239,68,68,0.15); }
+    .c-teal   .card-icon { background: rgba(20,184,166,0.15); }
+    .c-yellow .card-icon { background: rgba(234,179,8,0.15); }
+
+    @media (max-width: 600px) {
+      header { padding: 14px 16px; }
+      main { padding: 24px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="brand-icon">🤖</span>
+      <div>
+        <h1>Buddy</h1>
+        <p>r-u.live Control Panel</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="status-all"><span class="status-dot"></span>All systems online</div>
+      <form method="POST" action="/logout">
+        <button class="logout-btn" type="submit">Sign out</button>
+      </form>
+    </div>
+  </header>
+
+  <main>
+
+    <p class="section-title">Applications</p>
+    <div class="grid">
+
+      <a class="card c-indigo" href="https://r-u.live" target="_blank">
+        <div class="card-top">
+          <div class="card-icon">🌐</div>
+          <span class="badge badge-live">Live</span>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Landing Page</div>
+          <div class="card-desc">Public-facing website for r-u.live</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-url">r-u.live</span>
+          <span class="open-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="card c-purple" href="https://coolify.r-u.live" target="_blank">
+        <div class="card-top">
+          <div class="card-icon">⚡</div>
+          <span class="badge badge-auth">Login</span>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Coolify</div>
+          <div class="card-desc">Self-hosted PaaS – deploy & manage apps and services</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-url">coolify.r-u.live</span>
+          <span class="open-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="card c-green" href="https://supabase.r-u.live" target="_blank">
+        <div class="card-top">
+          <div class="card-icon">🗄️</div>
+          <span class="badge badge-auth">Login</span>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Supabase Studio</div>
+          <div class="card-desc">Database management, auth users, storage and realtime</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-url">supabase.r-u.live</span>
+          <span class="open-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="card c-blue" href="https://api.r-u.live" target="_blank">
+        <div class="card-top">
+          <div class="card-icon">🔌</div>
+          <span class="badge badge-api">API</span>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Supabase API</div>
+          <div class="card-desc">Kong gateway – REST, auth, realtime and storage endpoints</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-url">api.r-u.live</span>
+          <span class="open-arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+
+    <p class="section-title">Infrastructure</p>
+    <div class="grid">
+
+      <a class="card c-teal" href="https://portainer.r-u.live" target="_blank">
+        <div class="card-top">
+          <div class="card-icon">🐳</div>
+          <span class="badge badge-auth">Login</span>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Portainer</div>
+          <div class="card-desc">Docker container management – images, volumes, logs</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-url">portainer.r-u.live</span>
+          <span class="open-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="card c-orange" href="https://dns.r-u.live" target="_blank">
+        <div class="card-top">
+          <div class="card-icon">🔄</div>
+          <span class="badge badge-live">Live</span>
+        </div>
+        <div class="card-body">
+          <div class="card-name">DDNS Updater</div>
+          <div class="card-desc">Cloudflare auto-sync for all 17 A records – checks every 5m</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-url">dns.r-u.live</span>
+          <span class="open-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="card c-red" href="https://powerdns.r-u.live" target="_blank">
+        <div class="card-top">
+          <div class="card-icon">📡</div>
+          <span class="badge badge-live">Live</span>
+        </div>
+        <div class="card-body">
+          <div class="card-name">PowerDNS</div>
+          <div class="card-desc">Authoritative DNS server monitor and zone statistics</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-url">powerdns.r-u.live</span>
+          <span class="open-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="card c-yellow" href="https://mail.r-u.live" target="_blank">
+        <div class="card-top">
+          <div class="card-icon">📧</div>
+          <span class="badge badge-auth">Login</span>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Webmail</div>
+          <div class="card-desc">SnappyMail – read and send email from r-u.live addresses</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-url">mail.r-u.live</span>
+          <span class="open-arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+</body>
+</html>
