@@ -33,6 +33,13 @@ AUTH="Authorization: Bearer $COOLIFY_API_TOKEN"
 api_get()  { curl -fsSLk -H "$AUTH" -H "Accept: application/json" "$API/$1"; }
 api_post() { curl -sSLk -X POST -H "$AUTH" -H "Content-Type: application/json" -d "$2" "$API/$1"; }
 
+echo "==> [0/5] Building React app locally…"
+(cd "$APP_DIR" && npm ci --prefer-offline && npm run build)
+# Fix permissions so nginx (www-data) can read the dist folder
+chmod o+x "$HOME" "$HOME/dev" "$HOME/dev/server" "$APP_DIR"
+chmod -R o+r "$APP_DIR/dist"
+echo "    Build complete"
+
 echo "==> [1/5] Verifying Coolify connection…"
 HEALTH=$(curl -fsSLk -H "Accept: application/json" "$API/health" 2>/dev/null || true)
 [[ -n "$HEALTH" ]] || { echo "ERROR: Cannot reach Coolify API at $COOLIFY_URL"; exit 1; }
