@@ -4,7 +4,7 @@
 set -euo pipefail
 trap 'echo "[ERROR] Script failed at line $LINENO. Exit code: $?" >&2' ERR
 
-echo "[10/10] mailserver"
+echo "[10/12] mailserver"
 
 MAIL_DIR="$HOME/mailserver"
 DOMAIN="${MAIL_DOMAIN:-example.com}"

@@ -15,7 +15,7 @@
 set -euo pipefail
 trap 'echo "[ERROR] Script failed at line $LINENO. Exit code: $?" >&2' ERR
 
-echo "[11/11] cloudflare-domain"
+echo "[11/12] cloudflare-domain"
 
 DOMAIN="r-u.live"
 TUNNEL_NAME="r-u-live"

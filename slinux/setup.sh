@@ -4,10 +4,10 @@
 #  Runs all numbered scripts in order.
 #  Usage:
 #    bash setup.sh               # run all scripts
-#    bash setup.sh 3 5           # run only scripts 03, 04, 05
-#    bash setup.sh --skip 1 8    # skip scripts 01 and 08
+#    bash setup.sh 3 7           # run only scripts 03, 04, 05, 06, 07
+#    bash setup.sh --skip 1 9    # skip scripts 01 and 09
 #    bash setup.sh --skip 11     # skip Cloudflare tunnel setup
-#    MAIL_DOMAIN=yourdomain.com bash setup.sh
+#    bash setup.sh 12 12         # run only the test+DNS script
 # =============================================================
 
 set -euo pipefail
