@@ -1,0 +1,157 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0f;
+  --bg2: #111118;
+  --border: rgba(255,255,255,0.08);
+  --text: #e8e8f0;
+  --muted: #888;
+  --accent: #6366f1;
+  font-family: 'Inter', system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+body { background: var(--bg); color: var(--text); min-height: 100vh; }
+
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+/* ── Hero ─────────────────────────────────── */
+.hero { text-align: center; padding: 4rem 0 3rem; }
+
+.hero-badge {
+  display: inline-block;
+  padding: .25rem .9rem;
+  border-radius: 999px;
+  background: rgba(99,102,241,.15);
+  border: 1px solid rgba(99,102,241,.35);
+  color: #a5b4fc;
+  font-size: .8rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: 1.4rem;
+}
+
+.hero-title {
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1;
+  color: #fff;
+}
+
+.accent { color: var(--accent); }
+
+.hero-sub {
+  margin-top: 1.2rem;
+  color: var(--muted);
+  max-width: 480px;
+  margin-inline: auto;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+/* ── Section ─────────────────────────────── */
+.section { margin-top: 3.5rem; }
+
+.section-title {
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+}
+
+/* ── Cards grid ──────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color .2s, transform .15s, box-shadow .2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.card:hover { 
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.card:hover::before { opacity: .06; }
+
+.card-icon { font-size: 1.6rem; flex-shrink: 0; position: relative; }
+
+.card-body { flex: 1; overflow: hidden; position: relative; }
+
+.card-name { font-weight: 600; font-size: .95rem; }
+
+.card-desc { color: var(--muted); font-size: .8rem; margin-top: .15rem; }
+
+.card-url {
+  color: var(--accent);
+  font-size: .72rem;
+  margin-top: .3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: .8;
+}
+
+.card-arrow {
+  color: var(--muted);
+  font-size: 1rem;
+  flex-shrink: 0;
+  transition: transform .2s, color .2s;
+  position: relative;
+}
+.card:hover .card-arrow { transform: translateX(3px); color: var(--accent); }
+
+/* ── Pills ───────────────────────────────── */
+.pills { display: flex; flex-wrap: wrap; gap: .6rem; }
+
+.pill {
+  padding: .35rem .8rem;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: .82rem;
+  color: var(--muted);
+}
+
+/* ── Footer ──────────────────────────────── */
+.footer {
+  margin-top: 4rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: .8rem;
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+.sep { opacity: .4; }
