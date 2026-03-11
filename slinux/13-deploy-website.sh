@@ -4,7 +4,7 @@ set -euo pipefail
 trap 'echo "ERROR: script failed at line $LINENO" >&2' ERR
 
 SECRETS_FILE="$HOME/dev/.secrets.env"
-COOLIFY_URL="${COOLIFY_URL:-https://localhost:8443}"
+COOLIFY_URL="${COOLIFY_URL:-http://localhost:8100}"
 APP_DIR="$HOME/dev/server/r_u.live"
 GITHUB_REPO="anshulyadav-git/setupx-linux"
 APP_SUBDIRECTORY="server/r_u.live"
@@ -31,11 +31,11 @@ AUTH="Authorization: Bearer $COOLIFY_API_TOKEN"
 
 # ── Helper ────────────────────────────────────────────────────────────────────
 api_get()  { curl -fsSLk -H "$AUTH" -H "Accept: application/json" "$API/$1"; }
-api_post() { curl -fsSLk -X POST -H "$AUTH" -H "Content-Type: application/json" -d "$2" "$API/$1"; }
+api_post() { curl -sSLk -X POST -H "$AUTH" -H "Content-Type: application/json" -d "$2" "$API/$1"; }
 
 echo "==> [1/5] Verifying Coolify connection…"
-api_get "health" | python3 -c "import sys,json; d=json.load(sys.stdin); assert 'message' in d or d" 2>/dev/null \
-  || { echo "ERROR: Cannot reach Coolify API at $COOLIFY_URL"; exit 1; }
+HEALTH=$(curl -fsSLk -H "Accept: application/json" "$API/health" 2>/dev/null || true)
+[[ -n "$HEALTH" ]] || { echo "ERROR: Cannot reach Coolify API at $COOLIFY_URL"; exit 1; }
 echo "    OK"
 
 # ── Get first server UUID ─────────────────────────────────────────────────────
@@ -74,29 +74,25 @@ echo "==> [4/5] Creating / updating application…"
 APP_PAYLOAD=$(python3 - <<PYEOF
 import json
 payload = {
-  "type": "github",
   "name": "r_u_live",
   "description": "r-u.live landing page",
   "project_uuid": "$PROJECT_UUID",
   "environment_uuid": "$ENV_UUID",
   "server_uuid": "$SERVER_UUID",
-  "github_app": None,
   "git_repository": "https://github.com/$GITHUB_REPO.git",
   "git_branch": "main",
-  "git_commit_sha": "HEAD",
   "build_pack": "dockerfile",
-  "dockerfile_location": "$APP_SUBDIRECTORY/Dockerfile",
+  "dockerfile_location": "/Dockerfile",
   "base_directory": "/$APP_SUBDIRECTORY",
-  "publish_directory": None,
   "ports_exposes": "80",
-  "fqdn": "https://$DOMAIN",
+  "domains": "https://$DOMAIN",
   "instant_deploy": False
 }
 print(json.dumps(payload))
 PYEOF
 )
 
-APP_RESPONSE=$(api_post "applications" "$APP_PAYLOAD" 2>&1 || true)
+APP_RESPONSE=$(api_post "applications/public" "$APP_PAYLOAD" 2>&1 || true)
 
 # Try to extract UUID whether it's a new create or already exists
 APP_UUID=$(echo "$APP_RESPONSE" | python3 -c "
@@ -115,8 +111,8 @@ except Exception:
 " 2>/dev/null)
 
 if [[ -z "$APP_UUID" ]]; then
-  echo "    Application may already exist or creation failed. Looking up by name…"
-  APP_UUID=$(api_get "projects/$PROJECT_UUID/environments/$ENV_UUID/applications" 2>/dev/null | python3 -c "
+  echo "    Application may already exist (409). Looking up by name…"
+  APP_UUID=$(api_get "applications" 2>/dev/null | python3 -c "
 import sys, json
 try:
     apps = json.load(sys.stdin)
